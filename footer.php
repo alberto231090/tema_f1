@@ -16,7 +16,7 @@
         }
     </style>
     <div class="footer-container">
-        <p>&copy; <?php echo date("Y"); ?> F1 Ferrari. Tutti i diritti riservati.</p>
+   
     </div>
     <?php wp_footer(); ?>
 </footer>
