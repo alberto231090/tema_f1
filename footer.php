@@ -1,7 +1,7 @@
 <footer>
     <style>
         .footer-container {
-            background: #000;
+
             padding: 40px 0;
             color: white;
             text-align: center;
