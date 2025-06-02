@@ -1,0 +1,22 @@
+# Esclude backup e temporanei
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# Evita file compressi o di sistema
+*.zip
+*.tar.gz
+
+# Node/NPM (se mai usi build tools)
+node_modules/
+
+# Editor
+.vscode/
+.idea/
+
+# Evita file personali
+.env
