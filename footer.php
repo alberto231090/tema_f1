@@ -16,7 +16,7 @@
         }
     </style>
     <div class="footer-container">
-   
+   Alberto Gatti
     </div>
     <?php wp_footer(); ?>
 </footer>
