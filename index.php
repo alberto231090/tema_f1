@@ -16,10 +16,6 @@
     <div class="sidebar">
         <h2>Prossimi GP F1</h2>
         <ul>
-            <li>26 Maggio - Monaco</li>
-            <li>9 Giugno - Canada</li>
-            <li>23 Giugno - Spagna</li>
-            <li>30 Giugno - Austria</li>
         </ul>
     </div>
 </div>
