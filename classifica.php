@@ -90,6 +90,12 @@ function parse_f1_team($html) {
 // --- Scelta logica WEC o F1 ---
 $host = $_SERVER['HTTP_HOST'];
 $is_wec = strpos($host, 'wec') !== false;
+$host = $_SERVER['HTTP_HOST'];
+
+// Se siamo su formula2.formulapaddock.it, non mostrare nulla
+if (strpos($host, 'formula2.formulapaddock.it') !== false) {
+    return;
+}
 
 if ($is_wec) {
     $url = 'https://www.fiawec.com/en/manufacturers-classification/34';
