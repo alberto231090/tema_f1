@@ -3,6 +3,14 @@
 Template Name: Classifica Unificata F1 + WEC
 */
 
+// Recupero host
+$host = $_SERVER['HTTP_HOST'];
+
+// Se siamo su formula2.formulapaddock.it, non mostrare nulla
+if (strpos($host, 'formula2.formulapaddock.it') !== false) {
+    return;
+}
+
 function fetch_html($url, $verify_ssl = true) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -88,14 +96,7 @@ function parse_f1_team($html) {
 }
 
 // --- Scelta logica WEC o F1 ---
-$host = $_SERVER['HTTP_HOST'];
 $is_wec = strpos($host, 'wec') !== false;
-$host = $_SERVER['HTTP_HOST'];
-
-// Se siamo su formula2.formulapaddock.it, non mostrare nulla
-if (strpos($host, 'formula2.formulapaddock.it') !== false) {
-    return;
-}
 
 if ($is_wec) {
     $url = 'https://www.fiawec.com/en/manufacturers-classification/34';
