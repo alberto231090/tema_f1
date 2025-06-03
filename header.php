@@ -3,6 +3,7 @@
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<title><?php bloginfo('description'); ?></title>
 
   <meta name="keywords" content="Formula 1, Ferrari, F1, motorsport, Leclerc, Hamilton">
   
