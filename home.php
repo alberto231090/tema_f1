@@ -2,7 +2,9 @@
             
 <?php include('countdown.php'); ?>
 
-<h1 style="text-align:center">Ultime news sul mondo della wec</h1>
+<h1 style="text-align:center"> 
+<?php bloginfo('description'); ?>
+</h1>
 
 <div class="container main-content">
     <div class="posts-grid">
