@@ -1,7 +1,7 @@
 <?php
 // ICS Proxy – versione con DEBUG
 
-$ics_url = 'https://calendar.google.com/calendar/ical/3b4870bcfcdd9169a4ca7f871e98a5ec6013be9ffccc466bb18636b6d973245c%40group.calendar.google.com/public/basic.ics';
+$ics_url = 'https://calendar.google.com/calendar/ical/3b4870bcfcdd9169a4ca7f81e98a5ec6013be9ffccc46bb18636bd973245c@group.calendar.google.com/public/basic.ics';
 
 header('Content-Type: text/plain; charset=utf-8');
 

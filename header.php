@@ -3,7 +3,7 @@
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<title>Ultime news sul mondo della WEC</title>
   <meta name="keywords" content="Formula 1, Ferrari, F1, motorsport, Leclerc, Hamilton">
   
   <?php wp_head(); ?>
@@ -21,8 +21,27 @@
     </div>
     </header>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preload" href="https://fonts.gstatic.com" as="font" type="font/woff2" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    let adsLoaded = false;
+    function loadAdsense() {
+      if (adsLoaded) return;
+      adsLoaded = true;
 
+      const script = document.createElement('script');
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1892473664508324";
+      script.setAttribute("crossorigin", "anonymous");
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    window.addEventListener('scroll', loadAdsense, { once: true });
+    window.addEventListener('click', loadAdsense, { once: true });
+  });
+</script>
 <?php if (is_single()): ?>
 <script type="application/ld+json">
 {
@@ -68,21 +87,7 @@ if (str_ends_with($image, '.webp')) {
         $image = $jpg_version;
     }
 }
-
-	function add_og_image() {
-    if (is_single()) {
-        if (has_post_thumbnail()) {
-            $thumbnail = get_the_post_thumbnail_url(null, 'full');
-        } else {
-            // URL dell'immagine di default
-            $thumbnail = 'https://www.formulapaddock.it/path/to/immagine-default.jpg';
-        }
-        echo '<meta property="og:image" content="' . esc_url($thumbnail) . '" />' . "\n";
-    }
-}
-add_action('wp_head', 'add_og_image');
 ?>
-<?php wp_head(); ?>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KBHJR9HMLS"></script>
 <script>

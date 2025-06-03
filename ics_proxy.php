@@ -1,7 +1,7 @@
 <?php
 // ICS Proxy aggiornato con URL corretto al calendario F1
 
-$ics_url = 'https://calendar.google.com/calendar/ical/3b4870bcfcdd9169a4ca7f871e98a5ec6013be9ffccc466bb18636b6d973245c%40group.calendar.google.com/public/basic.ics';
+$ics_url = 'https://calendar.google.com/calendar/ical/57b53871bfaa55670352af9ad2a22daf9ec24d24d9bcfdad35557ef557cfbc77%40group.calendar.google.com/public/basic.ics';
 
 header('Content-Type: text/calendar; charset=utf-8');
 
