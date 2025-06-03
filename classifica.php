@@ -62,7 +62,10 @@ $driver = trim($driver_span->item(0)->nodeValue).' '.trim($driver_span->item(1)-
     }
 }
 ?>
+<?php
 
+if (strpos($_SERVER['HTTP_HOST'], 'f1') !== false) {
+?>
 <h2 style="text-align:center;">Classifica Costruttori F1</h2>
 
 <?php
@@ -105,5 +108,6 @@ if (!$html) {
 
         echo "</table>";
     }
+}
 }
 ?>
