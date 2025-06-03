@@ -22,7 +22,7 @@ Template Name: Countdown F1 ICS (evento più vicino)
 </style>
 
 <div class="countdown-container">
-    <h2>Countdown al prossimo GP F1</h2>
+    <h2>Countdown al prossimo GP</h2>
     <div id="countdown" class="countdown-box">⏳ Caricamento...</div>
 </div>
 
