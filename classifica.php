@@ -5,7 +5,7 @@ Template Name: Classifica Piloti F1 (cURL)
 
 ?>
 
-<h2 style="text-align:center;">Classifica Piloti F1</h2>
+
 
 <?php
 
