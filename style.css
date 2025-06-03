@@ -15,7 +15,7 @@ body {
     margin: 0;
     padding: 0;
 
-  color: #f5f5f5;
+
 
 }
 p{
@@ -43,7 +43,7 @@ header, footer {
 }
 
 h1, h2, h3 {
-    color: yellow;
+    color: black;
     margin-bottom: 10px;
 }
 
