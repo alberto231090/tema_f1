@@ -1,90 +1,109 @@
 <?php
 /*
-Template Name: Classifica Piloti Unificata (cURL) con Stile Personalizzato
+Template Name: Classifica Piloti F1 (cURL)
 */
 
-$host = $_SERVER['HTTP_HOST'];
+?>
 
-switch ($host) {
-    case 'www.formulapaddock.it':
-        $url = 'https://www.formula1.com/en/results/2025/drivers';
-        $title = 'Classifica Piloti F1';
-        $verify_ssl = false;
-        break;
-    case 'wec.formulapaddock.it':
-        $url = 'https://www.fiawec.com/en/manufacturers-classification/34';
-        $title = 'Classifica WEC';
-        $verify_ssl = true;
-        break;
-    default:
-        echo 'Classifica non disponibile per questo dominio.';
-        exit;
+<h2 style="text-align:center;">Classifica Piloti F1</h2>
+
+<?php
+
+if (strpos($_SERVER['HTTP_HOST'], 'wec') !== false) {
+    $url = 'https://www.fiawec.com/en/manufacturers-classification/34';
+    $title = 'Classifica WEC';
+    $verify_ssl = true;
+} else {
+    $url = 'https://www.formula1.com/en/results/2025/drivers';
+    $title = 'Classifica Piloti F1';
+    $verify_ssl = false;
 }
 
-echo "<div class='driver-standings-wrapper'>";
-echo "<h2>$title</h2>";
+echo "<h2 style='text-align:center;'>$title</h2>";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_TIMEOUT, 15);
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $verify_ssl);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
 
 $html = curl_exec($ch);
-if (curl_errno($ch)) {
-    echo 'Errore nella richiesta: ' . curl_error($ch);
-} else {
-    echo $html;
-}
 curl_close($ch);
 
-echo "</div>";
+if (!$html) {
+
+} else {
+    libxml_use_internal_errors(true);
+    $dom = new DOMDocument();
+    $dom->loadHTML($html);
+    $xpath = new DOMXPath($dom);
+
+    $rows = $xpath->query("//table[contains(@class,'f1-table f1-table-with-data w-full')]/tbody/tr");
+
+    if ($rows->length == 0) {
+        echo "<p style='text-align:center;'>⚠️ Nessuna classifica trovata.</p>";
+    } else {
+        echo "<table class='f1-standings'>";
+        echo "<tr><th>Pilota</th><th>Punti</th></tr>";
+
+        foreach ($rows as $row) {
+            $cols = $row->getElementsByTagName('td');
+            
+$driver_span = $cols->item(1)->getElementsByTagName('span');
+$driver = trim($driver_span->item(0)->nodeValue).' '.trim($driver_span->item(1)->nodeValue); // Solo nome completo
+
+			$points = trim($cols->item(4)->nodeValue);
+			echo "<tr> <td>$driver</td><td>$points</td></tr>";
+        }
+
+        echo "</table>";
+    }
+}
 ?>
 
-<style>
-.driver-standings-wrapper {
-    max-width: 900px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: #000;
-    color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    font-family: 'Arial', sans-serif;
-}
+<h2 style="text-align:center;">Classifica Costruttori F1</h2>
 
-.driver-standings-wrapper h2 {
-    text-align: center;
-    color: #f1c40f;
-    font-size: 2rem;
-}
+<?php
+$url = 'https://www.formula1.com/en/results/2025/team';
 
-.driver-standings-wrapper table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-}
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 15);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0');
 
-.driver-standings-wrapper th,
-.driver-standings-wrapper td {
-    border: 1px solid #444;
-    padding: 10px;
-    text-align: left;
-}
+$html = curl_exec($ch);
+curl_close($ch);
 
-.driver-standings-wrapper th {
-    background-color: #e10600;
-    color: #fff;
-    font-weight: bold;
-}
+if (!$html) {
+    echo "<p style='text-align:center;'>❌ Errore nel caricamento della classifica.</p>";
+} else {
+    libxml_use_internal_errors(true);
+    $dom = new DOMDocument();
+    $dom->loadHTML($html);
+    $xpath = new DOMXPath($dom);
 
-.driver-standings-wrapper tr:nth-child(even) {
-    background-color: #111;
-}
+    $rows = $xpath->query("//table[contains(@class,'f1-table f1-table-with-data w-full')]/tbody/tr");
 
-.driver-standings-wrapper tr:hover {
-    background-color: #222;
+    if ($rows->length == 0) {
+        echo "<p style='text-align:center;'>⚠️ Nessuna classifica trovata.</p>";
+
+	} else {
+        echo "<table class='f1-standings'>";
+        echo "<tr><th>Team</th><th>Punti</th></tr>";
+
+        foreach ($rows as $row) {
+            $cols = $row->getElementsByTagName('td');
+            $team = trim($cols->item(1)->nodeValue);
+            $points = trim($cols->item(2)->nodeValue);
+            echo "<tr><td>$team</td><td>$points</td></tr>";
+        }
+
+        echo "</table>";
+    }
 }
-</style>
+?>
