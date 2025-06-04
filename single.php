@@ -1,5 +1,7 @@
 <?php get_header(); ?>
-
+<title>
+<?php the_title(); ?>
+</title>
 <div class="single-container">
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 <?php
