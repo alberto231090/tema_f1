@@ -77,9 +77,9 @@
 </script>
 <?php endif; ?>
 	<?php
-$image_id = get_post_thumbnail_id($post);
-$image_data = wp_get_attachment_image_src($image_id, 'large');
-$image = $image_data[0];
+$image_id   = get_post_thumbnail_id($post);
+$image_data = $image_id ? wp_get_attachment_image_src($image_id, 'large') : false;
+$image      = $image_data ? $image_data[0] : '';
 
 // Se termina in .webp, prova a forzare jpg
 if (str_ends_with($image, '.webp')) {
