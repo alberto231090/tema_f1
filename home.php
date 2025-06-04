@@ -1,5 +1,6 @@
-<?php get_header(); ?>
 <title><?php bloginfo('description'); ?></title>            
+<?php get_header(); ?>
+
 <?php include('countdown.php'); ?>
 
 <h1 style="text-align:center"> 
