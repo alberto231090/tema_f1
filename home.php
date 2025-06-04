@@ -1,11 +1,11 @@
 <?php get_header(); ?>
-            
+<title><?php bloginfo('description'); ?></title>            
 <?php include('countdown.php'); ?>
 
 <h1 style="text-align:center"> 
 <?php bloginfo('description'); ?>
 </h1>
-<title><?php bloginfo('description'); ?></title>
+
 <div class="container main-content">
     <div class="posts-grid">
 
