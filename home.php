@@ -35,8 +35,8 @@
     </div>
 
     <aside class="sidebar">
-		            <h2>Le prossime gare</h2>
-        <?php echo do_shortcode('[calendar id="16622"]'); ?>
+		           
+
         <?php include('classifica.php'); ?>
     </aside>
 
